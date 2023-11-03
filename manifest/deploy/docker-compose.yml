@@ -1,0 +1,33 @@
+services:
+  web:
+    #build:
+    #  context: manifest/images/
+    #  dockerfile: ${PHP_TAG:-php82}/Dockerfile
+    image: docker.io/ccarney16/php-nginx:${PHP_TAG:-php82}
+    ports:
+    - 8080:8080
+    read_only: true
+    restart: unless-stopped
+    volumes:
+    - ./conf.d/http.d:/etc/nginx/http.d:ro
+    # - ./data/html:/html
+    - www-home:/var/lib/www-user
+    - tmpfs:/tmp
+  cron:
+    command: cron
+    image: docker.io/ccarney16/php-nginx:${PHP_TAG:-php82}
+    restart: unless-stopped
+    volumes:
+    - ./conf.d/yacron.d/:/etc/yacron.d
+    volumes_from:
+    - web
+  # worker:
+  #   command: whatever you need running persistently
+  #   image: docker.io/ccarney16/php-nginx:${PHP_TAG:-php82}
+  #   read_only: true
+  #   restart: unless-stopped
+  #   volumes_from:
+  #   - web
+volumes:
+  www-home:
+  tmpfs:
