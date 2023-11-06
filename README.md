@@ -15,8 +15,11 @@ All images are made using Almalinux, and includes PHP packages from Remi's RPM r
 Important Information:
 
 **Runtime User:** `www-user`
+
 **Runtime UID:** `500:500`
+
 **Runtime Volume:** `/var/lib/www-user`
+
 **PHP-FPM Socket:** `/var/lib/www-user/php-www.sock`
 
 Since the container is meant to be read-only, the Runtime Volume is defined in the image and should be generated upon creation.
