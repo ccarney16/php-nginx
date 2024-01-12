@@ -19,5 +19,7 @@ steps:
       dockerfile: ./manifest/images/${PHP_TAG}/Dockerfile
       tag: ${PHP_TAG}
 when:
-  - event:
-    - manual
+  - event: manual
+  - event: cron
+    branch: [ master ]
+    cron: "Weekly Updates"
