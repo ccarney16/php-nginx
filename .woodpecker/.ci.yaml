@@ -16,7 +16,7 @@ steps:
       password:
         from_secret: gitea_token
       context: ./manifest/images
-      dockerfile: ${PHP_TAG}/Dockerfile
+      dockerfile: ./manifest/images/${PHP_TAG}/Dockerfile
       tag: ${PHP_TAG}
 when:
   - event:
