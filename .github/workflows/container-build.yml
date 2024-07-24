@@ -16,10 +16,10 @@ jobs:
       fail-fast: false
       matrix:
         tag:
-        - php74
         - php80
         - php81
         - php82
+        - php83
     steps:
       - uses: actions/checkout@v4
       - uses: docker/setup-qemu-action@v3

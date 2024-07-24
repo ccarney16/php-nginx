@@ -1,13 +1,12 @@
 # This is a very basic configuration for PHP.
 
-
 server {
     # Replace the example <domain> with your domain name or IP address
     listen 80;
     server_name <domain>;
 
 
-    root /var/www/pterodactyl/public;
+    root /var/www/html;
     index index.html index.htm index.php;
     charset utf-8;
 
@@ -18,8 +17,8 @@ server {
     location = /favicon.ico { access_log off; log_not_found off; }
     location = /robots.txt  { access_log off; log_not_found off; }
 
-    access_log off;
-    error_log  /var/log/nginx/pterodactyl.app-error.log error;
+    access_log /dev/stdout main;
+    error_log  /dev/stderr error;
 
     # allow larger file uploads and longer script runtimes
     client_max_body_size 100m;
@@ -29,7 +28,7 @@ server {
 
     location ~ \.php$ {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass /var/lib/www-user/php-www.sock;
+        fastcgi_pass unix:/var/lib/www-user/php-www.sock;
         fastcgi_index index.php;
         include fastcgi_params;
         fastcgi_param PHP_VALUE "upload_max_filesize = 100M \n post_max_size=100M";
