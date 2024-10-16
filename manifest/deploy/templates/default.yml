@@ -1,0 +1,24 @@
+x-common: &common
+  image: docker.io/ccarney16/php-nginx:${PHP_TAG:-php82}
+  read_only: true
+  restart: unless-stopped
+services:
+  web:
+    << : *common
+    volumes:
+    - ./conf.d/http.d:/etc/nginx/http.d:ro
+    - ./data/html:/var/www/html
+    - www-home:/var/lib/www-user
+    - tmpfs:/tmp
+  cron:
+    << : *common
+    command: cron
+    profiles:
+    - cron
+    volumes:
+    - ./conf.d/yacron.d/:/etc/yacron.d
+    volumes_from:
+    - web
+volumes:
+  www-home:
+  tmpfs:
