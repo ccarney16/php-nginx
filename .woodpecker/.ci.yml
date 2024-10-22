@@ -1,0 +1,25 @@
+matrix:
+  PHP_TAG:
+  - php80
+  - php81
+  - php82
+  - php83
+  PLATFORM:
+  - linux/amd64
+  - linux/arm64/v8
+steps:
+  image-build:
+    image: docker.io/woodpeckerci/plugin-docker-buildx
+    settings:
+      repo: docker.io/ccarney16/php-nginx
+      context: ./manifest/images
+      dockerfile: ./manifest/image/${PHP_TAG}/Dockerfile
+      platforms: ${PLATFORM}
+      dry_run: true # TESTING RIGHT NOW, DO NOT PUSH TO REPO
+      tags:
+      - ${PHP_TAG}
+      username:
+        from_secret: dockerhub_username
+      password:
+        from_secret: dockerhub_token
+- event: [ manual ]
