@@ -13,7 +13,7 @@ steps:
     settings:
       repo: docker.io/ccarney16/php-nginx
       context: ./manifest/images
-      dockerfile: ./manifest/image/${PHP_TAG}/Dockerfile
+      dockerfile: ./manifest/images/${PHP_TAG}/Dockerfile
       platforms: ${PLATFORM}
       dry_run: true # TESTING RIGHT NOW, DO NOT PUSH TO REPO
       tags:
