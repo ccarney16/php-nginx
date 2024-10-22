@@ -15,7 +15,6 @@ steps:
       context: ./manifest/images
       dockerfile: ./manifest/images/${PHP_TAG}/Dockerfile
       platforms: ${PLATFORM}
-      dry_run: true # TESTING RIGHT NOW, DO NOT PUSH TO REPO
       tags:
       - ${PHP_TAG}
       username:
