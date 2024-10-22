@@ -10,6 +10,7 @@ matrix:
 steps:
   image-build:
     image: docker.io/woodpeckerci/plugin-docker-buildx
+    secrets: [ dockerhub_username, dockerhub_token ]
     settings:
       repo: docker.io/ccarney16/php-nginx
       context: ./manifest/images
