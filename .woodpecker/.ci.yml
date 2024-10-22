@@ -4,9 +4,6 @@ matrix:
   - php81
   - php82
   - php83
-  PLATFORM:
-  - linux/amd64
-  - linux/arm64/v8
 steps:
   image-build:
     image: docker.io/woodpeckerci/plugin-docker-buildx
@@ -14,7 +11,7 @@ steps:
       repo: docker.io/ccarney16/php-nginx
       context: ./manifest/images
       dockerfile: ./manifest/images/${PHP_TAG}/Dockerfile
-      platforms: ${PLATFORM}
+      platforms: linux/amd64,linux/arm64/v8
       tags:
       - ${PHP_TAG}
       username:
